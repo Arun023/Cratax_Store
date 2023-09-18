@@ -82,17 +82,13 @@ body {
 }
 .carousel-images {
   position: relative;
-  border-radius: 10px;
-  height: 400px;
-  max-width: 650px;
-  margin: auto;
+  height: 700px;
   overflow: hidden;
 }
 .carousel-images img {
-  width: 99%;
-  height: 99%;
-  border-radius: 8px;
-  border: #ff00008e solid 2px;
+ object-fit: cover;
+ overflow: hidden;
+
 }
 .slide_direction {
   display: flex;
