@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Props } from "@/interfaces/carousel";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -6,7 +6,6 @@ const slideVariants = {
   hiddenRight: {
     x: "100%",
     opacity: 0,
-    
   },
   hiddenLeft: {
     x: "100%",
@@ -34,23 +33,12 @@ const slidersVariants = {
     backgroundColor: "#ff00008e",
   },
 };
-const dotsVariants = {
-  initial: {
-    y: 0,
-  },
-  animate: {
-    y: -10,
-    scale: 1.3,
-    transition: { type: "spring", stiffness: 1000, damping: "10" },
-  },
-  hover: {
-    scale: 1.1,
-    transition: { duration: 0.2 },
-  },
-};
+
 
 const Carousel = ({ images }: Props) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const autoplayDelay = 5000;
+  const [autoplayInterval, setAutoplayInterval] = useState(null);
   const [direction, setDirection] = useState<string>("left");
 
   const handleNext = () => {
@@ -59,6 +47,18 @@ const Carousel = ({ images }: Props) => {
       prevIndex + 1 === images.length ? 0 : prevIndex + 1
     );
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const nextIndex = (currentIndex + 1) % images.length;
+      setCurrentIndex(nextIndex);
+    }, autoplayDelay);
+    setAutoplayInterval(interval);
+
+    return () => {
+      clearInterval(autoplayInterval);
+    };
+  }, [currentIndex]);
 
   const handlePrevious = () => {
     setDirection("left");
@@ -75,47 +75,48 @@ const Carousel = ({ images }: Props) => {
 
   return (
     <div className="carousel">
-      <AnimatePresence>
-        <motion.img
-          className="w-full h-96 object-cover"
-          key={currentIndex}
-          src={images[currentIndex]}
-          variants={slideVariants}
-          initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
-          animate="visible"
-          exit="exit"
-        />
-      </AnimatePresence>
-      ;
-      <div className="slide_direction">
-        <motion.div
-          variants={slidersVariants}
-          whileHover="hover"
-          className="left"
-          onClick={handlePrevious}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="20"
-            viewBox="0 96 960 960"
-            className="left__icon"
-            width="20">
-            <path d="M400 976 0 576l400-400 56 57-343 343 343 343-56 57Z" />
-          </svg>
-        </motion.div>
-        <motion.div
-          variants={slidersVariants}
-          whileHover="hover"
-          className="right"
-          onClick={handleNext}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="20"
-            className="right__icon"
-            viewBox="0 96 960 960"
-            width="20">
-            <path d="m304 974-56-57 343-343-343-343 56-57 400 400-400 400Z" />
-          </svg>
-        </motion.div>
+      <div className="carousel-images">
+        <AnimatePresence>
+          <motion.img
+            className="w-full  object-cover"
+            key={currentIndex}
+            src={images[currentIndex]}
+            variants={slideVariants}
+            initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
+            animate="visible"
+            exit="exit"
+          />
+        </AnimatePresence>
+        <div className="slide_direction">
+          <motion.div
+            variants={slidersVariants}
+            whileHover="hover"
+            className="left"
+            onClick={handlePrevious}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="20"
+              viewBox="0 96 960 960"
+              className="left__icon"
+              width="20">
+              <path d="M400 976 0 576l400-400 56 57-343 343 343 343-56 57Z" />
+            </svg>
+          </motion.div>
+          <motion.div
+            variants={slidersVariants}
+            whileHover="hover"
+            className="right"
+            onClick={handleNext}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="20"
+              className="right__icon"
+              viewBox="0 96 960 960"
+              width="20">
+              <path d="m304 974-56-57 343-343-343-343 56-57 400 400-400 400Z" />
+            </svg>
+          </motion.div>
+        </div>
       </div>
       <div className="carousel-indicator">
         {images.map((_, index) => (
@@ -126,8 +127,10 @@ const Carousel = ({ images }: Props) => {
             initial="initial"
             animate={currentIndex === index ? "animate" : ""}
             whileHover="hover"
-            variants={dotsVariants}
-          ></motion.div>
+            // variants={dotsVariants}
+            >
+
+            </motion.div>
         ))}
       </div>
     </div>
