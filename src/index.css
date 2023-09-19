@@ -82,7 +82,6 @@ body {
 }
 .carousel-images {
   position: relative;
-  height: 700px;
   overflow: hidden;
 }
 .carousel-images img {

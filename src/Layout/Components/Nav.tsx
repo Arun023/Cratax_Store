@@ -17,7 +17,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { NAV_ITEMS } from "@/helper/config";
-import { NavItem } from "@/interfaces/navigation";
+import { NavItem } from "@/interfaces/homePage";
 import { Link } from "react-router-dom";
 
 export const DesktopNav = () => {

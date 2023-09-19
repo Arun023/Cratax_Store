@@ -26,9 +26,8 @@ import { Link } from "react-router-dom";
 import { Logo } from "@/assets/index";
 import { DesktopNav, MobileNav } from "../Components/Nav";
 
-type Props = {};
 
-const Navbar = (props: Props) => {
+const Navbar = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
