@@ -12,7 +12,7 @@ const Appp = (props: Props) => {
       <Routes>
         <Route path="/" element={<BaseLayout />} />;
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

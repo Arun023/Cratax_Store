@@ -1,5 +1,6 @@
-import { ICard, NavItem } from "@/interfaces/homePage";
+import { ICard, IFooterLink, NavItem } from "@/interfaces/homePage";
 import { MenCategory, FemaleCategory, KidsCategory } from "@/assets/index";
+
 export const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Men",
@@ -42,18 +43,76 @@ export const Cards: ICard[] = [
     img: MenCategory,
     text: "Men's",
     id: 1,
-    link:"/men"
+    link: "/men",
   },
   {
     img: FemaleCategory,
     text: "Women's",
     id: 2,
-    link:"/female"
+    link: "/female",
   },
   {
     img: KidsCategory,
     text: "Kids's",
     id: 3,
-    link:"/kids"
+    link: "/kids",
   },
+];
+
+export const HelpItems :IFooterLink[] = [
+  {
+    label: "Delivery & Return",
+    link: "/",
+    id:1
+  },
+  {
+    label: "FAQ",
+    link: "/faq",
+    id:2
+  },
+  {
+    label: "Track Order",
+    link: "/track-order",
+    id:3
+  },
+  {
+    label: "Contacts",
+    link: "/contacts",
+    id:4
+  },
+  {
+    label: "Blog",
+    link: "/blog",
+    id:5
+  },
+
+];
+
+export const ShopItems :IFooterLink[] = [
+  {
+    label: "New Arrivals",
+    id:1,
+    link: "/new-arrivals",
+  },
+  {
+    label: "Trending Now",
+    id:2,
+    link: "/trending-now",
+  },
+  {
+    label: "Sales",
+    id:3,
+    link: "/sales",
+  },
+  {
+    label: "Brands",
+    id:4,
+    link: "/brands",
+  },
+  {
+    label: "Blog",
+    id:5,
+    link: "/blog",
+  },
+
 ];

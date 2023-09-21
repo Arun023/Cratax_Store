@@ -1,10 +1,4 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  Heart,
-  ShoppingCart,
-  User2,
-} from "lucide-react";
+import { Heart, ShoppingCart, User2 } from "lucide-react";
 import React, { useState } from "react";
 import {
   Box,
@@ -21,14 +15,12 @@ import {
   DrawerBody,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
 
 import { Logo } from "@/assets/index";
 import { DesktopNav, MobileNav } from "../Components/Nav";
 
-
 const Navbar = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -65,9 +57,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <nav className="container flex gap-5 justify-center items-center py-2 px-2">
-        <Box>
-          <Flex
+      <nav className="flex bg-slate-100 gap-5 justify-center items-center py-2 px-2 sticky top-0 z-50">
+      <Flex
             bg={useColorModeValue("white", "gray.800")}
             color={useColorModeValue("gray.600", "white")}
             minH={"60px"}
@@ -77,6 +68,8 @@ const Navbar = () => {
             borderStyle={"solid"}
             borderColor={useColorModeValue("gray.200", "gray.900")}
             align={"center"}>
+
+          </Flex>
             <Flex
               flex={{ base: 1, md: "auto" }}
               ml={{ base: -2 }}
@@ -111,8 +104,6 @@ const Navbar = () => {
                 <DesktopNav />
               </Flex>
             </Flex>
-          </Flex>
-        </Box>
       </nav>
 
       <Drawer
@@ -128,13 +119,6 @@ const Navbar = () => {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-      <section className="flex gap-3 text-sm justify-center items-center p-2 bg-green-800 text-white">
-        <ChevronLeft /> Up to 70% Sale.{" "}
-        <Link className="underline" to={""}>
-          Shop at our latest sale
-        </Link>{" "}
-        <ChevronRight />
-      </section>
     </>
   );
 };

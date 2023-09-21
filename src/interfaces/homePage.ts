@@ -25,3 +25,14 @@ export interface ICategoryCard {
   text: string;
   link: string;
 }
+
+export interface IFooterLink {
+  label: string;
+  link: string;
+  id: number;
+}
+
+export interface IFooterProps {
+  text: string;
+  items: IFooterLink[];
+}
