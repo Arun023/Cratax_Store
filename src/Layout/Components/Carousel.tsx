@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CarouselProps } from "@/interfaces/homePage";
-import { Button } from "@chakra-ui/react";
+import Button from "./Button";
 
 const Carousel = ({
   images,
@@ -15,12 +15,8 @@ const Carousel = ({
         <p className="text-2xl uppercase font-bold">{topText}</p>
         <p className="text-6xl font-bold">{headingText}</p>
         <div className="flex gap-10 mt-10">
-          <button className="border-[2px] border-green-700 px-6 rounded-lg text-green-700 font-medium">
-            {secondaryButton}
-          </button>
-          <button className="bg-green-700 px-10 py-2 rounded-lg text-white font-medium">
-            {primaryButton}
-          </button>
+          <Button primary={primaryButton} />
+          <Button secondary={secondaryButton} />
         </div>
       </div>
       <img className="w-full object-contain" src={images} />

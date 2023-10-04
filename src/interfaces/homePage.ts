@@ -1,3 +1,5 @@
+import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
+
 export interface CarouselProps {
   images: string;
   link?: string;
@@ -5,6 +7,12 @@ export interface CarouselProps {
   primaryButton: string;
   headingText: string;
   topText: string;
+}
+
+export interface ButtonProps {
+  primary?: string;
+  secondary?: string;
+  classAppiled?: string;
 }
 
 export interface NavItem {
@@ -35,4 +43,32 @@ export interface IFooterLink {
 export interface IFooterProps {
   text: string;
   items: IFooterLink[];
+}
+
+export interface IProductProps {
+  id?: number;
+  productName: string;
+  price: string | number;
+  totalRating: number;
+  productImage: string;
+}
+
+export interface IProductCategoryProps {
+  id?: number;
+  prodTitle: string;
+  prodImage: string;
+}
+
+export interface IBannerProps {
+  heading: string;
+  subHeading: string;
+  btnText: string;
+  btnClassApplied?: string;
+  subHeadingClass?: string;
+}
+
+export interface IFeatureList {
+  text: string;
+  description: string;
+  icon: ReactJSXElement;
 }

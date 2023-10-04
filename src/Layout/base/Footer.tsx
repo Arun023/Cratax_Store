@@ -1,21 +1,13 @@
 import { HelpItems, ShopItems } from "@/helper/config";
 import { Image, Text } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
-import FooterLinks from "../Components/FooterLinks";
-import {
-  FacebookIcon,
-  InstagramIcon,
-  TwitchIcon,
-  TwitterIcon,
-  YoutubeIcon,
-} from "lucide-react";
-import SocialLinks from "../Components/SocialLinks";
+import FooterLinks from "@/Layout/Components/FooterLinks";
+import SocialLinks from "@/Layout/Components/SocialLinks"
 import { Appstore,Googlestore } from "@/assets/index";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 flex justify-center items-center lg:py-20 px-10 py-10 ">
+    <footer className="bg-slate-900 mt-10 flex justify-center items-center lg:py-20 px-10 py-10 ">
       <section className="flex gap-20 text-white md:flex-row flex-wrap px-10 md:px-0">
         <FooterLinks items={HelpItems} text="HELP" />
         <FooterLinks items={ShopItems} text="SHOP" />

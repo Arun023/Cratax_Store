@@ -2,6 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -85,9 +90,8 @@ body {
   overflow: hidden;
 }
 .carousel-images img {
- object-fit: cover;
- overflow: hidden;
-
+  object-fit: cover;
+  overflow: hidden;
 }
 .slide_direction {
   display: flex;
@@ -140,4 +144,9 @@ body {
 }
 .active {
   background-color: #fa2020;
+}
+
+.banner_background {
+  background-image: url("./assets/Blackbackground.png");
+  min-height: 300px;
 }

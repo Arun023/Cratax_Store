@@ -11,6 +11,10 @@ import FemaleCategory from "./FemaleCategory.png";
 import MenCategory from "./MenCategory.png";
 import KidsCategory from "./KidsCategory.png";
 import SubScription from "./Subscription.png";
+import ProductOne from "./productone.png"
+import ProductTwo from "./producttwo.png"
+import ProductThree from "./product3.png"
+import Background from "./background.png"
 
 export {
   Logo,
@@ -26,4 +30,8 @@ export {
   MenCategory,
   KidsCategory,
   SubScription,
+  ProductOne,
+  ProductTwo,
+  ProductThree,
+  Background
 };
