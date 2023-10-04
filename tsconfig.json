@@ -22,7 +22,7 @@
         "@/*": ["./*"],
         "@/lib": ["./src"],
         "@/pages" : ["./src/pages"],
-        "@/components" : ["./src/layout/components"],
+        "@/components" : ["./src/Layout/Components"],
         "@/assets" : ["./src/assets"]
 
       }

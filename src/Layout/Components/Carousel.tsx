@@ -1,138 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Props } from "@/interfaces/carousel";
-import { motion, AnimatePresence } from "framer-motion";
+import { CarouselProps } from "@/interfaces/homePage";
+import Button from "./Button";
 
-const slideVariants = {
-  hiddenRight: {
-    x: "100%",
-    opacity: 0,
-  },
-  hiddenLeft: {
-    x: "100%",
-    opacity: 0,
-  },
-  visible: {
-    x: "0",
-    opacity: 1,
-    transition: {
-      duration: 1,
-    },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.8,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
-const slidersVariants = {
-  hover: {
-    scale: 1.2,
-    backgroundColor: "#ff00008e",
-  },
-};
-
-
-const Carousel = ({ images }: Props) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const autoplayDelay = 5000;
-  const [autoplayInterval, setAutoplayInterval] = useState(null);
-  const [direction, setDirection] = useState<string>("left");
-
-  const handleNext = () => {
-    setDirection("right");
-    setCurrentIndex((prevIndex) =>
-      prevIndex + 1 === images.length ? 0 : prevIndex + 1
-    );
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const nextIndex = (currentIndex + 1) % images.length;
-      setCurrentIndex(nextIndex);
-    }, autoplayDelay);
-    setAutoplayInterval(interval);
-
-    return () => {
-      clearInterval(autoplayInterval);
-    };
-  }, [currentIndex]);
-
-  const handlePrevious = () => {
-    setDirection("left");
-
-    setCurrentIndex((prevIndex) =>
-      prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleDotClick = (index: number) => {
-    setDirection(index > currentIndex ? "right" : "left");
-    setCurrentIndex(index);
-  };
-
+const Carousel = ({
+  images,
+  topText,
+  headingText,
+  primaryButton,
+  secondaryButton,
+}: CarouselProps) => {
   return (
-    <div className="carousel">
-      <div className="carousel-images">
-        <AnimatePresence>
-          <motion.img
-            className="w-full  object-cover"
-            key={currentIndex}
-            src={images[currentIndex]}
-            variants={slideVariants}
-            initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
-            animate="visible"
-            exit="exit"
-          />
-        </AnimatePresence>
-        <div className="slide_direction">
-          <motion.div
-            variants={slidersVariants}
-            whileHover="hover"
-            className="left"
-            onClick={handlePrevious}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="20"
-              viewBox="0 96 960 960"
-              className="left__icon"
-              width="20">
-              <path d="M400 976 0 576l400-400 56 57-343 343 343 343-56 57Z" />
-            </svg>
-          </motion.div>
-          <motion.div
-            variants={slidersVariants}
-            whileHover="hover"
-            className="right"
-            onClick={handleNext}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="20"
-              className="right__icon"
-              viewBox="0 96 960 960"
-              width="20">
-              <path d="m304 974-56-57 343-343-343-343 56-57 400 400-400 400Z" />
-            </svg>
-          </motion.div>
+    <div className="relative flex items-center">
+      <div className="absolute left-96 flex-col gap-6 hidden md:flex">
+        <p className="text-2xl uppercase font-bold">{topText}</p>
+        <p className="text-6xl font-bold">{headingText}</p>
+        <div className="flex gap-10 mt-10">
+          <Button primary={primaryButton} />
+          <Button secondary={secondaryButton} />
         </div>
       </div>
-      <div className="carousel-indicator">
-        {images.map((_, index) => (
-          <motion.div
-            key={index}
-            className={`dot ${currentIndex === index ? "active" : ""}`}
-            onClick={() => handleDotClick(index)}
-            initial="initial"
-            animate={currentIndex === index ? "animate" : ""}
-            whileHover="hover"
-            // variants={dotsVariants}
-            >
-
-            </motion.div>
-        ))}
-      </div>
+      <img className="w-full object-contain" src={images} />
     </div>
   );
 };

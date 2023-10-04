@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "description": "Cratax Store using Ts and react and Redux",
   "scripts": {
-    "start": "parcel index.html --no-cache",
+    "arun": "parcel index.html --no-cache",
     "build": "parcel build index.html",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "Arun",
   "license": "ISC",
@@ -17,9 +17,12 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "framer-motion": "^10.16.4",
+    "lucide": "^0.279.0",
     "lucide-react": "^0.279.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
+    "react-multi-carousel": "^2.8.4",
     "react-router-dom": "^6.16.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
